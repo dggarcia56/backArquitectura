@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Realizar Pedido</title>
+	<script>
+		function confirmarPedido() {
+            alert("Pedido realizado con éxito");
+        }
+	</script>
+</head>
+<body>
+<section>
+	<div class="container mt-5 p-5">
+		<form id="orders" method="post" th:action="@{/user/save-order}" novalidate>
+			<div class="row justify-content-center">
+				<div class="col-md-6">
+					<p class="text-center fs-4">Metodo de Pago</p>
+					<hr>
+					<div class="card text-center">
+						<div class="card-body">
+							<table class="table table-borderless">
+								<tbody>
+								<tr>
+									<td>Precio total</td>
+									<td>:</td>
+									<td th:text="${orderPrice}"></td>
+								</tr>
+								<tr>
+									<td>Costo de envio</td>
+									<td>:</td>
+									<td>30000</td>
+								</tr>
+								<tr>
+									<td>Impuestos</td>
+									<td>:</td>
+									<td>3000</td>
+								</tr>
+								<tr class="border-top">
+									<td>Precio final</td>
+									<td>:</td>
+									<td th:text="${totalOrderPrice}"></td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card shadow p-3 mb-5 mt-2 bg-body-tertiary rounded">
+						<div class="card-body">
+							<div class="mb-3">
+								<label class="form-label">Seleccione el metodo de pago</label>
+								<select required name="paymentType" class="form-control">
+									<option value="">--Seleccionar--</option>
+									<option value="COD">Pago contra entrega</option>
+								</select>
+							</div>
+							<!-- Botón para enviar el formulario -->
+							<button type="submit" class="btn bg-primary text-white col-md-12" onclick="confirmarPedido()">Realizar Pedido</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insertar titulo aqui</title>
+</head>
+<body>
+<section>
+	<div class="container card-sh" style="margin-top: 70px; margin-bottom: 100px">
+
+		<div class="col-md-12 p-5">
+			<div class="row">
+				<th:block th:if="${session.succMsg}">
+					<p class="text-success alert alert-success text-center" role="alert">[[${session.succMsg}]]</p>
+					<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+				</th:block>
+
+				<th:block th:if="${session.errorMsg}">
+					<p class="text-danger text-center alert alert-danger">[[${session.errorMsg}]]</p>
+					<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
+				</th:block>
+
+				<div class="col-md-6 text-end">
+					<img alt="" th:src="@{'/img/'+${product.image}}" width="300px" height="250px">
+				</div>
+
+				<div class="col-md-6">
+					<p class="fs-3">[[${product.title}]]</p>
+					<p>
+						<span class="fw-bold">Detalles del Producto: </span> <br> Estado:
+						<th:block th:if="${product.stock>0}">
+							<span class="badge bg-success">Disponible</span>
+						</th:block>
+
+						<th:block th:unless="${product.stock>0}">
+							<span class="badge bg-warning">Agotado</span>
+						</th:block>
+
+						<br> Categoria: [[${product.category}]]<br> Politica: Reemplazo y devolucion dentro de 7 dias
+					</p>
+					<p class="fs-5 fw-bold">
+						Precio:
+						<span class="fs-6 text-secondary">[[${product.price}]]</span>
+					</p>
+
+					<th:block th:if="${product.stock>0}">
+						<th:block th:if="${user==null}">
+							<a href="/signin" class="btn btn-danger col-md-12">Anadir al carrito</a>
+						</th:block>
+
+						<th:block th:unless="${user==null}">
+							<a th:href="@{'/user/addCart?pid='+${product.id}+'&uid='+${user.id}}"
+							   class="btn btn-danger col-md-12">Anadir al carrito</a>
+						</th:block>
+
+					</th:block>
+
+					<th:block th:unless="${product.stock>0}">
+						<a href="#" class="btn text-white btn-warning col-md-12">Agotado</a>
+					</th:block>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>

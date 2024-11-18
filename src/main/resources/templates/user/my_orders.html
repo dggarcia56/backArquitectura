@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	  th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insertar título aquí</title>
+</head>
+<body>
+<section>
+	<div class="container mt-5 p-5">
+		<div class="row">
+			<p class="text-center fs-3">Mis Pedidos</p>
+			<div class="col-md-12 ">
+
+				<table class="table table-bordered card-sh">
+					<thead >
+					<tr >
+						<th scope="col">ID del Pedido</th>
+						<th scope="col">Fecha</th>
+						<th scope="col">Detalles del Producto</th>
+						<th scope="col">Precio</th>
+						<th scope="col">Estado</th>
+						<th scope="col">Accion</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="o : ${orders}">
+						<th scope="row" th:text="${o.orderId}"></th>
+						<td th:text="${o.orderDate}"></td>
+						<td th:text="${o.product.title}"></td>
+						<td>
+							Cantidad: <span th:text="${o.quantity}"></span><br>
+							Precio: <span th:text="${o.price}"></span><br>
+							Precio Total: <span th:text="${o.quantity * o.price}"></span>
+						</td>
+						<td th:text="${o.status}"></td>
+						<td>
+							<a th:href="@{'/user/update-status?id='+${o.id}+'&st=6'}" class="btn btn-sm btn-danger" th:if="${o.status != 'Cancelled'}">Cancelar</a>
+							<a href="#" class="btn btn-sm btn-danger disabled" th:unless="${o.status != 'Cancelled'}">Cancelar</a>
+						</td>
+					</tr>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+
+	</div>
+</section>
+</body>
+</html>

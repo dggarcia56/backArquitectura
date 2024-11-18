@@ -1,0 +1,49 @@
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.nav-link {
+  color: #000000;
+}
+
+.navbar-toggler-icon {
+  background-color: transparent !important;
+}
+
+.navbar-toggler-icon::before {
+  content: "\22EE\22EE\22EE";
+  color: #1b365c;
+  font-size: 24px;
+}
+
+.navbar-principal {
+  box-shadow: 0px 0px 10px rgba(82, 63, 105, 0.1);
+  color: #000000;
+}
+
+.navbar-brand,
+.navbar-m {
+  color: #000000;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-iniciar-sesion {
+  background-color: #3f3f37;
+  color: #ffffff;
+  padding: 10px 40px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-iniciar-sesion-2 {
+  background-color: #ffffff;
+  color: #fed83f;
+  padding: 10px 40px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-iniciar-sesion:hover {
+  color: #8da2bd;
+}
